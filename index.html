@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUA MODERN TEXTURE | 现代材质</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <style>
+        :root {
+            /* Material 3 色彩系统 */
+            --md-primary: #6750A4;
+            --md-on-primary: #FFFFFF;
+            --md-primary-container: #EADDFF;
+            --md-on-primary-container: #21005D;
+            --md-secondary: #625B71;
+            --md-on-secondary: #FFFFFF;
+            --md-secondary-container: #E8DEF8;
+            --md-on-secondary-container: #1D192B;
+            --md-tertiary: #7D5260;
+            --md-on-tertiary: #FFFFFF;
+            --md-tertiary-container: #FFD8E4;
+            --md-on-tertiary-container: #31111D;
+            --md-background: #FEF7FF;
+            --md-on-background: #1D1B20;
+            --md-surface: #FEF7FF;
+            --md-on-surface: #1D1B20;
+            --md-surface-variant: #E7E0EC;
+            --md-on-surface-variant: #49454F;
+            --md-outline: #79747E;
+            --md-shadow: #000000;
+            
+            /* 间距和形状 */
+            --md-radius-sm: 4px;
+            --md-radius-md: 8px;
+            --md-radius-lg: 12px;
+            --md-radius-xl: 16px;
+            --md-radius-xxl: 28px;
+            
+            /* 动画曲线 */
+            --md-easing: cubic-bezier(0.2, 0, 0, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: var(--md-background);
+            color: var(--md-on-background);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 导航栏样式 */
+        nav {
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            background-color: var(--md-primary);
+            color: var(--md-on-primary);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            margin-right: 24px;
+        }
+        
+        .nav-img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%; /* 圆形 */
+            object-fit: cover; /* 确保图片填充整个圆形 */
+            display: block;
+            border: 2px solid var(--md-on-primary);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s var(--md-easing), box-shadow 0.3s var(--md-easing);
+        }
+        
+        .logo-link:hover .nav-img {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .nav-button {
+            background: none;
+            border: none;
+            color: var(--md-on-primary);
+            padding: 10px 16px;
+            border-radius: var(--md-radius-lg);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s var(--md-easing);
+        }
+        
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-button.active {
+            background-color: var(--md-primary-container);
+            color: var(--md-on-primary-container);
+        }
+        
+        /* 主内容区域 */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            transition: opacity 0.3s var(--md-easing);
+        }
+        
+        /* 主页样式 */
+        .hero {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            color: var(--md-primary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--md-on-surface-variant);
+            margin-bottom: 40px;
+        }
+        
+        /* 文章页面样式 */
+        .article-page {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .article-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .back-button {
+            display: flex;
+            align-items: center;
+            background: none;
+            border: none;
+            color: var(--md-primary);
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: var(--md-radius-lg);
+            transition: background-color 0.2s var(--md-easing);
+        }
+        
+        .back-button:hover {
+            background-color: var(--md-primary-container);
+        }
+        
+        .back-button span {
+            margin-right: 8px;
+        }
+        
+        .article-content {
+            background-color: var(--md-surface);
+            border-radius: var(--md-radius-xl);
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .article-title {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: var(--md-primary);
+        }
+        
+        .article-text {
+            line-height: 1.6;
+            color: var(--md-on-surface-variant);
+            margin-bottom: 24px;
+        }
+        
+        /* 详细页面样式 */
+        .detail-page {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        /* 下载页面样式 */
+        .download-page {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .cards-container {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .card {
+            background-color: var(--md-surface);
+            border-radius: var(--md-radius-xl);
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s var(--md-easing), box-shadow 0.3s var(--md-easing);
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--md-primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title .material-symbols-outlined {
+            margin-right: 8px;
+            font-size: 1.8rem;
+        }
+        
+        .card-description {
+            color: var(--md-on-surface-variant);
+            margin-bottom: 24px;
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+        
+        .download-button {
+            background-color: var(--md-primary);
+            color: var(--md-on-primary);
+            border: none;
+            border-radius: var(--md-radius-lg);
+            padding: 12px 24px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s var(--md-easing);
+            align-self: flex-start;
+        }
+        
+        .download-button:hover {
+            background-color: #5A4790;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .application-button {
+            background-color: var(--md-tertiary);
+            color: var(--md-on-tertiary);
+            border: none;
+            border-radius: var(--md-radius-lg);
+            padding: 12px 24px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s var(--md-easing);
+            align-self: flex-start;
+        }
+        
+        .application-button:hover {
+            background-color: #6B4554;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: var(--md-radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-left: 8px;
+        }
+        
+        .free-badge {
+            background-color: var(--md-primary-container);
+            color: var(--md-on-primary-container);
+        }
+        
+        .beta-badge {
+            background-color: var(--md-tertiary-container);
+            color: var(--md-on-tertiary-container);
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s var(--md-easing) forwards;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            nav {
+                padding: 12px 16px;
+            }
+            
+            .logo-link {
+                margin-right: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <a href="https://b23.tv/ZbEUetG" class="logo-link" target="_blank" title="访问我的B站主页">
+            <img class="nav-img" src="1.png" alt="HUA MODERN TEXTURE Logo">
+        </a>
+        <div class="nav-buttons">
+            <button class="nav-button active" id="home-btn">主页</button>
+            <button class="nav-button" id="detail-btn">详细</button>
+            <button class="nav-button" id="download-btn">下载</button>
+        </div>
+    </nav>
+    
+    <!-- 主内容区域 -->
+    <main>
+        <!-- 主页/英雄区域 -->
+        <section class="hero" id="hero-section">
+            <h1 class="hero-title">HUA MODERN TEXTURE</h1>
+            <p class="hero-subtitle">现代材质</p>
+        </section>
+        
+        <!-- 文章页面 -->
+        <section class="article-page" id="article-section">
+            <div class="article-header">
+                <button class="back-button" id="article-back-btn">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    返回
+                </button>
+            </div>
+            <div class="article-content">
+                <h2 class="article-title">现代材质设计理念</h2>
+                <p class="article-text">
+                    HUA现代材质系列是我们对当代设计美学的深度探索。我们致力于将自然材质的真实感与数字设计的精确性完美融合，创造出既美观又实用的纹理资源。
+                </p>
+                <p class="article-text">
+                    我们的设计过程始于对真实世界材质的深入研究。通过高精度扫描和数字化处理，我们保留了材质的自然特征，同时增强了其可用性和适应性，使其能够无缝融入各种设计项目。
+                </p>
+                <p class="article-text">
+                    HUA现代材质库包含数百种精心制作的纹理，涵盖石材、金属、织物、木材等多种类别。每种材质都经过优化，适用于从平面设计到3D渲染的各种应用场景。
+                </p>
+                <p class="article-text">
+                    我们的材质资源被全球设计师广泛使用，帮助他们在品牌设计、用户界面、游戏开发和建筑可视化等项目中实现出色的视觉效果。
+                </p>
+            </div>
+        </section>
+        
+        <!-- 详细页面 -->
+        <section class="detail-page" id="detail-section">
+            <div class="article-header">
+                <button class="back-button" id="detail-back-btn">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    返回
+                </button>
+            </div>
+            <div class="cards-container">
+                <div class="card fade-in">
+                    <h3 class="card-title">
+                        <span class="material-symbols-outlined">dns</span>
+                        材质版本覆盖
+                    </h3>
+                    <p class="card-description">
+                        目前更多适配于1.21.6+，后续会下放低版本，但可能会丢失部分内容。我们持续优化以确保更多用户能够体验到高质量的材质。
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <h3 class="card-title">
+                        <span class="material-symbols-outlined">aspect_ratio</span>
+                        材质分辨率
+                    </h3>
+                    <p class="card-description">
+                        材质分辨率从2048x高分辨率到64x极低配，不同端用户均可畅玩，深度定制性能。无论您的设备配置如何，都能找到合适的版本。
+                    </p>
+                </div>
+                <div class="card fade-in">
+                    <h3 class="card-title">
+                        <span class="material-symbols-outlined">warning</span>
+                        用户需注意
+                    </h3>
+                    <p class="card-description">
+                        材质禁止二改后分发，同时也禁止第三方发布此材质，如有发现，有责必究。请尊重我们的劳动成果，谢谢合作。
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 下载页面 -->
+        <section class="download-page" id="download-section">
+            <div class="article-header">
+                <button class="back-button" id="download-back-btn">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    返回
+                </button>
+            </div>
+            <div class="cards-container">
+                <div class="card fade-in">
+                    <h3 class="card-title">
+                        <span class="material-symbols-outlined">download</span>
+                        普通版
+                        <span class="badge free-badge">免费</span>
+                    </h3>
+                    <p class="card-description">
+                        基础材质，即目前已发布的版本，拥有一个免费版，点击下方进行下载。
+                    </p>
+                    <button class="download-button">下载免费版</button>
+                </div>
+                <div class="card fade-in">
+                    <h3 class="card-title">
+                        <span class="material-symbols-outlined">science</span>
+                        实验版
+                        <span class="badge beta-badge">限量300名</span>
+                    </h3>
+                    <p class="card-description">
+                        即实验性内容，相当于内测资格，开放名额300位。抢先体验最新特性并提供反馈。
+                    </p>
+                    <button class="application-button">申请内测资格</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 页面切换逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            const homeBtn = document.getElementById('home-btn');
+            const detailBtn = document.getElementById('detail-btn');
+            const downloadBtn = document.getElementById('download-btn');
+            const articleBackBtn = document.getElementById('article-back-btn');
+            const detailBackBtn = document.getElementById('detail-back-btn');
+            const downloadBackBtn = document.getElementById('download-back-btn');
+            
+            const heroSection = document.getElementById('hero-section');
+            const articleSection = document.getElementById('article-section');
+            const detailSection = document.getElementById('detail-section');
+            const downloadSection = document.getElementById('download-section');
+            
+            // 主页按钮点击事件
+            homeBtn.addEventListener('click', function() {
+                heroSection.style.display = 'block';
+                articleSection.style.display = 'none';
+                detailSection.style.display = 'none';
+                downloadSection.style.display = 'none';
+                
+                homeBtn.classList.add('active');
+                detailBtn.classList.remove('active');
+                downloadBtn.classList.remove('active');
+            });
+            
+            // 详细按钮点击事件
+            detailBtn.addEventListener('click', function() {
+                heroSection.style.display = 'none';
+                articleSection.style.display = 'none';
+                detailSection.style.display = 'block';
+                downloadSection.style.display = 'none';
+                
+                homeBtn.classList.remove('active');
+                detailBtn.classList.add('active');
+                downloadBtn.classList.remove('active');
+            });
+            
+            // 下载按钮点击事件
+            downloadBtn.addEventListener('click', function() {
+                heroSection.style.display = 'none';
+                articleSection.style.display = 'none';
+                detailSection.style.display = 'none';
+                downloadSection.style.display = 'block';
+                
+                homeBtn.classList.remove('active');
+                detailBtn.classList.remove('active');
+                downloadBtn.classList.add('active');
+            });
+            
+            // 文章返回按钮点击事件
+            articleBackBtn.addEventListener('click', function() {
+                heroSection.style.display = 'block';
+                articleSection.style.display = 'none';
+                detailSection.style.display = 'none';
+                downloadSection.style.display = 'none';
+                
+                homeBtn.classList.add('active');
+                detailBtn.classList.remove('active');
+                downloadBtn.classList.remove('active');
+            });
+            
+            // 详细返回按钮点击事件
+            detailBackBtn.addEventListener('click', function() {
+                heroSection.style.display = 'block';
+                articleSection.style.display = 'none';
+                detailSection.style.display = 'none';
+                downloadSection.style.display = 'none';
+                
+                homeBtn.classList.add('active');
+                detailBtn.classList.remove('active');
+                downloadBtn.classList.remove('active');
+            });
+            
+            // 下载返回按钮点击事件
+            downloadBackBtn.addEventListener('click', function() {
+                heroSection.style.display = 'block';
+                articleSection.style.display = 'none';
+                detailSection.style.display = 'none';
+                downloadSection.style.display = 'none';
+                
+                homeBtn.classList.add('active');
+                detailBtn.classList.remove('active');
+                downloadBtn.classList.remove('active');
+            });
+            
+            // 初始页面状态
+            heroSection.style.display = 'block';
+            articleSection.style.display = 'none';
+            detailSection.style.display = 'none';
+            downloadSection.style.display = 'none';
+            
+            // 添加下载按钮点击事件
+            document.querySelectorAll('.download-button, .application-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('感谢您的兴趣！下载功能即将开放，请稍后回来查看。');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
